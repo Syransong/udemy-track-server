@@ -2,8 +2,11 @@ const express = require("express");
 const mongoose =require("mongoose");
 const dotenv = require('dotenv');
 dotenv.config();
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+
+app.use(authRoutes);
 
 const mongoURI = process.env.MONGO_URI;
 
