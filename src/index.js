@@ -1,9 +1,24 @@
 const express = require("express");
-require('dotenv').config()
+const mongoose =require("mongoose");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 
-const mongoURI = process.env.MONGO_URI
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("Connected to mongo instance");
+});
+
+mongoose.connection.on("error", (err) => {
+  console.error("Error in connecting to mongo", err)
+})
 
 app.get("/", (req, res) => {
   res.send("Hi there!");
