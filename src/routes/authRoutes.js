@@ -2,8 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
-router.post("/signup", () => {
+router.post("/signup", (req, res) => {
+  console.log(req.body);
   res.send("You made a post request");
 });
 
-modeul.exports = router;
+module.exports = router;
